@@ -1,0 +1,58 @@
+﻿@model WebApplication8.Models.ModelResults
+<div>
+    <span class="error"> @ViewBag.Error</span>
+    <table border="1">      
+        @{
+            if (Model.Hrefcount != null)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Hrefcount)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => model.Hrefcount)
+                    </th>
+                </tr>
+            }
+            if (Model.FindTextconsid.Count > 0)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayName("Слова")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Кол-во совпадений")
+                    </th>
+                </tr>
+
+                foreach (var val in Model.FindTextconsid)
+                {
+                    <tr>
+                        <th>@val.Word</th>
+                        <th>@val.Count</th>
+                    </tr>
+                }
+            }
+            if (Model.FindKeywordsConsid.Count > 0)
+            {
+                              <tr>
+                                  <th>
+                                      @Html.DisplayName("Слова")
+                                  </th>
+                                  <th>
+                                      @Html.DisplayName("Кол-во совпадений")
+                                  </th>
+                              </tr>
+
+                                foreach (var val in Model.FindKeywordsConsid)
+                                {
+                
+                                   <tr>
+                                       <th>@val.Word</th>
+                                       <th>@val.Count</th>
+                                    </tr>
+                                }
+            }
+        }
+    </table>
+</div>
