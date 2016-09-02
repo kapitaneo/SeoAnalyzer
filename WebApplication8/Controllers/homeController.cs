@@ -83,7 +83,6 @@ namespace WebApplication8.Controllers
             StreamReader sr;
             string content = "";
 
-            //возможен неправильный Url!!!
             if (!address.Contains("http://"))
                 String.Concat("http://", address);
             try
@@ -96,7 +95,6 @@ namespace WebApplication8.Controllers
                 content = sr.ReadToEnd();
                 sr.Close();
 
-                //Получаем кодировку страницы
                 IHtmlDocument angle = new HtmlParser().Parse(content);
 
                 foreach (IElement element in angle.QuerySelectorAll("meta"))
@@ -112,10 +110,8 @@ namespace WebApplication8.Controllers
                     }
                 }
 
-
                 var re = new Regex(".*?charset=");
                 content = re.Replace(content, "");
-
 
                 req = (HttpWebRequest)WebRequest.Create(address);
                 resp = (HttpWebResponse)req.GetResponse();
@@ -188,8 +184,7 @@ namespace WebApplication8.Controllers
             {
                 content = content + a;             
             }
-//            var re = new Regex(@"<script(\w*)</script>");
-//            content = re.Replace(content, " ");
+
             var re = new Regex("<.*?>");
             content = re.Replace(content, " ");
             return content;
